@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap");
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  @media #{$xxl} {
+    font-size: 1.7rem;
+  }
+}
+body {
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;  
+  background-color: $primary-bg;
+  height: 100vh;
+  
+}
+
+#root{
+  height: 100%;
+}
+.App {
+  position: relative;
+  height: 100%;
+  @include flex($direction: column-reverse);
+  
+  @media #{$md} {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+  }
+  @media #{$lg} {
+    grid-template-columns: 300px 1fr;
+  }
+  @media #{$xxl} {
+    grid-template-columns: 475px 1fr;
+  }
+}
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: $secondary-font-color;
+}
+
+a,
+li {
+  display: inline-block;
+}
+
+button {
+  background: $primary-btn;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 20px;
+  padding: 0.6rem 2rem;
+  border: 1px solid $primary-btn-dark;
+
+  &:hover {
+    background: $primary-btn-dark;
+  }
+}
+.home-logo {
+  font-weight: 700;
+  text-align: center;
+  width: 100%;
+  color: $primary-font-color;
+  font-size: 3rem;
+  user-select: none;
+}
+section {
+  height: 100%;
+  width: 100%;
+  padding: 1.7rem 1rem;
+  position: relative;
+  h2 {
+    display: inline-block;
+  }
+
+  #add-product {
+    color: $primary-btn;
+    cursor: pointer;
+    font-size: 160%;
+  }
+} 
+.messageAlert {
+  color: white;
+  border-radius: 20px;
+  padding: 0.7rem 1.4rem;
+  text-align: center;
+  margin-block: 0.5rem;
+  position: absolute;
+  top: 2%;
+  right: 5%;
+}
+
+
+

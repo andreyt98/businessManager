@@ -1,0 +1,45 @@
+.desktop-nav {
+  display: none;
+  padding-block: 2rem;
+  background: $secondary-bg;
+  @media #{$md} {
+    @include flex($direction: column, $align: center, $justify: center);
+  }
+  .logo {
+    width: 100%;
+    font-weight: 700;
+    text-align: center;
+    color: $primary-font-color;
+    position: absolute;
+    top: 5%;
+  }
+
+  .active{
+    color: #0059ff;
+    background-color: #ebecf0;
+    border-right: 5px solid #0059ff;
+    &:hover{
+      margin-inline: 0; 
+    }
+  }
+
+  &__links {
+    @include flex($direction: column, $align: flex-start, $justify: center, $gap: 0.5rem);
+    width: 100%;
+
+    li {
+      width: 100%;
+    }
+    a {
+      display: block;
+      padding: 1rem 2rem;
+      transition: all 0.3s;
+
+      &:hover {
+        color: $primary-font-color;
+        background-color: $primary-bg;
+        margin-inline: 10px;
+      }
+    }
+  }
+}

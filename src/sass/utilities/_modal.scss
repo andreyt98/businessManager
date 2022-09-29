@@ -1,0 +1,10 @@
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  @extend .flex-col-center;
+  background-color: #000000bb;
+  backdrop-filter: blur(10px);
+}
