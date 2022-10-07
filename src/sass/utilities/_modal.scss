@@ -7,4 +7,21 @@
   @extend .flex-col-center;
   background-color: #000000bb;
   backdrop-filter: blur(10px);
+
+  &__content {
+    width: 95%;
+    background: $primary-bg;
+    height: auto;
+    padding: 2rem;
+    border-radius: 15px;
+    @extend .flex-col-center;
+    gap: 1.9rem;
+
+    @media #{$sm} {
+      width: 65%;
+    }
+    @media #{$lg} {
+      width: 50%;
+    }
+  }
 }
