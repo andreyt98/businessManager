@@ -25,7 +25,7 @@ const ProductSection = () => {
     <section id="product-section">
       <h2>Products</h2> {" "}
  
-      <i className="bi bi-plus-circle-fill" id="add-product" onClick={() => setModalIsOpen(true)}></i>
+      <i className="bi bi-plus-circle-fill section-btn " id="add-product" onClick={() => setModalIsOpen(true)}></i>
 
       <Table tableHeaders={tableHeaders} products={products} setProducts={setProducts} modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} setProduct={setProduct}/>
 
