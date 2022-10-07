@@ -8,6 +8,8 @@ const ProductSection = () => {
   const tableHeaders = ["Name", "Cost", "Quantity", ""];
 
   const [products, setProducts] = useState(JSON.parse(localStorage.getItem("products")) || []);
+  const [product, setProduct] = useState({});
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [message, setMessage] = useState({ active: false, type: null });
 
@@ -25,11 +27,11 @@ const ProductSection = () => {
  
       <i className="bi bi-plus-circle-fill" id="add-product" onClick={() => setModalIsOpen(true)}></i>
 
-      <Table tableHeaders={tableHeaders} products={products} setProducts={setProducts} />
+      <Table tableHeaders={tableHeaders} products={products} setProducts={setProducts} modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} setProduct={setProduct}/>
 
-      <Modal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} products={products} setProducts={setProducts} message={message} setMessage={setMessage} />
+      <Modal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} products={products} setProducts={setProducts} message={message} setMessage={setMessage} product={product} setProduct={setProduct}/>
       
-      {message && message.type === "success" ? <Message backgroundColor={"#D1E7DD"} textColor={"green"} iconClass={"bi bi-check-circle-fill"} text={"Product Added!"}  /> : null}
+      {message && message.type === "success" ? <Message backgroundColor={"#D1E7DD"} textColor={"green"} iconClass={"bi bi-check-circle-fill"}  text={"Product Added!"}  /> : null}
     </section>
   );
 };
