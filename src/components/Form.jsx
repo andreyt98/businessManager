@@ -2,38 +2,58 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Message from "./Message";
 
-const Form = ({ setModalIsOpen, products, setProducts, message, setMessage }) => {
+const Form = ({ setModalIsOpen, products, setProducts, message, setMessage, product, setProduct }) => {
   const [name, setName] = useState("");
   const [cost, setCost] = useState("");
   const [quantity, setQuantity] = useState("");
 
   useEffect(() => {
-    localStorage.setItem("products", JSON.stringify(products));
-  }, [products]);
+    if (Object.keys(product).length > 0) {
+      setName(product.name);
+      setCost(product.cost);
+      setQuantity(product.quantity);
+    }
+  }, [product]);
 
   const handleSubmit = (evt, name, cost, quantity) => {
     evt.preventDefault();
 
     if (![name, cost, quantity].includes("")) {
-      const id = Date.now().toString(36) + Math.random().toString(36).slice(2);
+      if (Object.keys(product).length > 0) {
+        const actualizacion = products.map((elemento) => (elemento.id === product.id ? { id: product.id, name, cost, quantity } : elemento));
 
-      setProducts([...products, { id, name, cost, quantity }]);
+        setProducts(actualizacion);
+        setModalIsOpen(false);
+        setName("");
+        setCost("");
+        setQuantity("");
+        setMessage({ active: true, type: "success" });
+      } else {
 
-      setName("");
-      setCost("");
-      setQuantity("");
-      setModalIsOpen(false);
-      setMessage({ active: true, type: "success" });
-
+        const id = Date.now().toString(36) + Math.random().toString(36).slice(2);
+        setProducts([...products, { id, name, cost, quantity }]);
+        
+        setModalIsOpen(false);
+        setName("");
+        setCost("");
+        setQuantity("");
+        setMessage({ active: true, type: "success" });
+      }
     } else {
       setMessage({ active: true, type: "error" });
     }
+
+  };
+
+  const handleCancel = () => {
+    setModalIsOpen(false);
+    setProduct({});
   };
 
   return (
     <div className="modal">
       <form action="" className="form-new-product" onSubmit={(evt) => handleSubmit(evt, name, cost, quantity)}>
-        <h2 id="form-header">New product</h2>
+        <h2 id="form-header"> {product.name ? "Edit Product" : "New product"}</h2>
 
         <label htmlFor="name">
           Name
@@ -81,9 +101,9 @@ const Form = ({ setModalIsOpen, products, setProducts, message, setMessage }) =>
 
         <div className="form__options">
           <button type="submit" id="create-product">
-            Create
+            {product ? "Update" : " Create"}
           </button>
-          <button type="button" id="cancel" onClick={() => setModalIsOpen(false)}>
+          <button type="button" id="cancel" onClick={handleCancel}>
             Cancel
           </button>
         </div>
