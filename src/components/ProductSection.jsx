@@ -4,13 +4,12 @@ import Message from "./Message";
 
 import { useState, useEffect } from "react";
 
-const ProductSection = () => {
+const ProductSection = ({modalIsOpen,setModalIsOpen}) => {
   const tableHeaders = ["Name", "Cost", "Quantity", ""];
 
   const [products, setProducts] = useState(JSON.parse(localStorage.getItem("products")) || []);
   const [product, setProduct] = useState({});
 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [message, setMessage] = useState({ active: false, type: null });
 
   useEffect(() => {
