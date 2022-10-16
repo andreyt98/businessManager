@@ -51,7 +51,7 @@ const Form = ({ setModalIsOpen, products, setProducts, message, setMessage, prod
   };
 
   return (
-    <div className="modal">
+    <>
       <form action="" className="form-new-product" onSubmit={(evt) => handleSubmit(evt, name, cost, quantity)}>
         <h2 id="form-header"> {product.name ? "Edit Product" : "New product"}</h2>
 
@@ -101,7 +101,7 @@ const Form = ({ setModalIsOpen, products, setProducts, message, setMessage, prod
 
         <div className="form__options">
           <button type="submit" id="create-product">
-            {product ? "Update" : " Create"}
+            {Object.keys(product).length > 0 ? "Update" : " Create"}
           </button>
           <button type="button" id="cancel" onClick={handleCancel}>
             Cancel
@@ -110,7 +110,7 @@ const Form = ({ setModalIsOpen, products, setProducts, message, setMessage, prod
       </form>
 
       {message && message.type === "error" ? <Message backgroundColor={"#F8D7DA"} textColor={"brown"} iconClass={"bi bi-x-circle-fill"} text={"Please fill all fields"} /> : null}
-    </div>
+      </>
   );
 };
 
