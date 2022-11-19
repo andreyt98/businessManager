@@ -14,6 +14,9 @@ function App() {
   const [products, setProducts] = useState(JSON.parse(localStorage.getItem("products")) || []);
   const [product, setProduct] = useState({});
 
+  const [sales, setSales] = useState(JSON.parse(localStorage.getItem("sales")) || []);
+  const [sale, setSale] = useState({});
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
   return (
     <div className="App">
