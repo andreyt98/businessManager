@@ -16,19 +16,19 @@ form {
       width: 70%;
     }
   }
-  .form__options {
-    @extend .flex-center;
-    width: 100%;
-    gap: 0.8rem;
-    #cancel {
-      background: none;
-      color: red;
-      border: 1px solid red;
+}
+.form__options {
+  @extend .flex-center;
+  width: 100%;
+  gap: 0.8rem;
+}
+#cancel {
+  background: none;
+  color: red;
+  border: 1px solid red;
 
-      &:hover {
-        background: red;
-        color: white;
-      }
-    }
+  &:hover {
+    background: red;
+    color: white;
   }
 }
