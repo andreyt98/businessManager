@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 const Table = ({ tableHeaders, products, setProducts, setModalIsOpen, setProduct }) => {
-
   useEffect(() => {
     localStorage.removeItem("products");
     localStorage.setItem("products", JSON.stringify(products));
@@ -16,15 +15,13 @@ const Table = ({ tableHeaders, products, setProducts, setModalIsOpen, setProduct
     });
   }
 
-  function handleEdit(id){
-
+  function handleEdit(id) {
     products.forEach((product) => {
-      if(product.id===id){
+      if (product.id === id) {
         setModalIsOpen(true);
-        setProduct(product)
+        setProduct(product);
       }
-    })
-
+    });
   }
   return (
     <div className="table-container">
@@ -40,11 +37,19 @@ const Table = ({ tableHeaders, products, setProducts, setModalIsOpen, setProduct
           {products.map((element) => {
             return (
               <tr key={element.id} data-id={element.id}>
-                <td>{element.name}</td>
-                <td>{element.cost}</td>
-                <td>{element.quantity}</td>
+                {Object.values(element)
+                  .slice(1)
+                  .map((value) => {
+                    return <td>{value}</td>;
+                  })}
                 <td>
-                  <i className="bi bi-pencil-fill" id="edit-product" onClick={()=>{handleEdit(element.id)}}></i>
+                  <i
+                    className="bi bi-pencil-fill"
+                    id="edit-product"
+                    onClick={() => {
+                      handleEdit(element.id);
+                    }}
+                  ></i>
                   <i className="bi bi-trash3-fill" id="delete-product" onClick={() => handleDelete(element.id)}></i>
                 </td>
               </tr>
