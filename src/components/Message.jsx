@@ -1,11 +1,21 @@
-import React from "react";
+const Message = ({ type }) => {
+  let icon, text;
 
-const Message = ({ backgroundColor, textColor, iconClass, text }) => {
+  if (type === "success") {
+    text = "Product Added!";
+    icon = "bi bi-check-circle-fill";
+  } else if (type ==="error") {
+    text = "Please fill all fields";
+    icon = "bi bi-x-circle-fill";
+  }else{
+    text = "No products added yet";
+    icon = "bi bi-exclamation-circle-fill";
+  }
+
   return (
-    <p className={"messageAlert"} style={{ background: backgroundColor, color: textColor }}>
-        <i className={`${iconClass}`}></i>
-        {" "}
-        {text}
+    <p className={"messageAlert " + type}>
+      <i className={icon}></i>
+      {" " + text}
     </p>
   );
 };

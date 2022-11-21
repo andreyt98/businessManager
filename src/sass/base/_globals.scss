@@ -94,6 +94,20 @@ section {
   margin-bottom: 0.5rem;
 }
 
+.success{
+background-color: #D1E7DD;
+color: green;
+}
+
+.error{
+  background-color:#F8D7DA ;
+  color: brown;
+}
+.warning{
+  background-color:#0059ff ;
+  color: white;
+}
+
 .marked{
   font-size: 170%;
   font-weight: 600;
