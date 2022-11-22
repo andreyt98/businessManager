@@ -19,7 +19,6 @@ function App() {
   const [sale, setSale] = useState({});
 
   const [successMessage, setSuccessMessage] = useState(false);
-
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   return (
@@ -34,6 +33,10 @@ function App() {
           setSuccessMessage,
           modalIsOpen,
           setModalIsOpen,
+          sales,
+          setSales,
+          sale,
+          setSale,
         }}
       >
         <BrowserRouter>
@@ -42,7 +45,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/products" element={<ProductSection />}></Route>
-            <Route path="/sale" element={<SaleSection products={products} modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />}></Route>
+            <Route path="/sale" element={<SaleSection />}></Route>
           </Routes>
         </BrowserRouter>
       </Context.Provider>
