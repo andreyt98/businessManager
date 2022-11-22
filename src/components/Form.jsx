@@ -1,11 +1,19 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Message from "./Message";
+import { Context } from "../context/Context";
 
-const Form = ({ setModalIsOpen, products, setProducts, message, setMessage, product, setProduct }) => {
+
+
+const Form = () => {
+
+  const {products,setProducts,product,setProduct,setModalIsOpen,setSuccessMessage} = useContext(Context);
+
   const [name, setName] = useState("");
   const [cost, setCost] = useState("");
   const [quantity, setQuantity] = useState("");
+  const [errorMessage, setErrorMessage] = useState(false);
+
 
   useEffect(() => {
     if (Object.keys(product).length > 0) {
@@ -14,6 +22,7 @@ const Form = ({ setModalIsOpen, products, setProducts, message, setMessage, prod
       setQuantity(product.quantity);
     }
   }, [product]);
+
 
   const handleSubmit = (evt, name, cost, quantity) => {
     evt.preventDefault();
@@ -27,7 +36,7 @@ const Form = ({ setModalIsOpen, products, setProducts, message, setMessage, prod
         setName("");
         setCost("");
         setQuantity("");
-        setMessage({ active: true, type: "success" });
+        setSuccessMessage(true);
       } else {
 
         const id = Date.now().toString(36) + Math.random().toString(36).slice(2);
@@ -37,10 +46,13 @@ const Form = ({ setModalIsOpen, products, setProducts, message, setMessage, prod
         setName("");
         setCost("");
         setQuantity("");
-        setMessage({ active: true, type: "success" });
+        setSuccessMessage(true);
       }
     } else {
-      setMessage({ active: true, type: "error" });
+      setErrorMessage(true);
+      setTimeout(() => {
+        setErrorMessage(false)
+      }, 3000);
     }
 
   };
@@ -52,7 +64,7 @@ const Form = ({ setModalIsOpen, products, setProducts, message, setMessage, prod
 
   return (
     <>
-          {message && message.type === "error" ? <Message backgroundColor={"#F8D7DA"} textColor={"brown"} iconClass={"bi bi-x-circle-fill"} text={"Please fill all fields"} /> : null}
+      {errorMessage && <Message type={"error"}/>}
 
       <form action="" className="form-new-product" onSubmit={(evt) => handleSubmit(evt, name, cost, quantity)}>
         <h2 id="form-header"> {product.name ? "Edit Product" : "New product"}</h2>

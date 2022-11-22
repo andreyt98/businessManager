@@ -1,5 +1,9 @@
-import { useEffect } from "react";
-const Table = ({ tableHeaders, products, setProducts, setModalIsOpen, setProduct }) => {
+import { useEffect,useContext  } from "react";
+import { Context } from "../context/Context";
+const Table = ({ tableHeaders }) => {
+
+  const {products,setProducts,setProduct, setModalIsOpen} = useContext(Context);
+
   useEffect(() => {
     localStorage.removeItem("products");
     localStorage.setItem("products", JSON.stringify(products));
@@ -40,7 +44,7 @@ const Table = ({ tableHeaders, products, setProducts, setModalIsOpen, setProduct
                 {Object.values(element)
                   .slice(1)
                   .map((value) => {
-                    return <td>{value}</td>;
+                    return <td key={Math.random() * 2000}>{value}</td>;
                   })}
                 <td>
                   <i

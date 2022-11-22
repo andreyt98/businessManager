@@ -1,7 +1,15 @@
 import React from "react";
-import { useState, useEffect } from "react";
-const Sale = ({ products, sales, setSales }) => {
+import { useState, useEffect, useContext } from "react";
+import { Context } from "../context/Context";
+
+const Sale = () => {
   
+  const { products, sales, setSales } = useContext(Context);
+  useEffect(()=>{
+    localStorage.setItem("sales", JSON.stringify(sales))
+  },[sales])
+
+
   const [currentProduct, setCurrentProduct] = useState({});
 
   const [productQuantity, setProductQuantity] = useState(1);
@@ -31,10 +39,6 @@ const Sale = ({ products, sales, setSales }) => {
     }
   }
 
-  useEffect(()=>{
-    localStorage.setItem("sales", JSON.stringify(sales))
-  },[sales])
-
   return (
     <div className="sale">
 
@@ -61,7 +65,7 @@ const Sale = ({ products, sales, setSales }) => {
         </select>
       </label>
 
-      {Object.keys(currentProduct).length > 0 ? (
+      {Object.keys(currentProduct).length > 0 && (
         <>
         <label htmlFor="productQuantity">
           Choose quantity ({currentProduct.quantity} in stock): {" "} 
@@ -88,7 +92,7 @@ const Sale = ({ products, sales, setSales }) => {
             </span>
             </label>
         </>
-      ) : null}
+      )}
 
       <h2>TOTAL: {"$" + productTotal} </h2>
 
